@@ -1,33 +1,39 @@
 import sys
 import random
 
-opcion_usuario = sys.argv[1]
-opciones = ["Piedra", "Papel", "Tijera"]                    
-opcion_computador = random.choice(opciones)
+if len(sys.argv) == 2:
 
-if not opcion_usuario or not opcion_usuario in opciones:
-    print("Debes jugar una opción válida.")
-    print(f"Opciones válidas: {opciones}.")
-    print("Ejemplo: $ python cachipun.py", random.choice(opciones))
+    opcion_usuario = sys.argv[1].lower()
 
-else: 
-    if opcion_usuario == opcion_computador:
-        print(f"Tú haz elegido {opcion_usuario} y el computador {opcion_computador}. Empate")
+    if (opcion_usuario == "piedra" or
+            opcion_usuario == "papel" or
+            opcion_usuario == "tijera"):
 
-    elif (opciones.index(opcion_usuario) == 0 and opciones.index(opcion_computador) == 2):
-        print(
-            f"Tú haz elegido {opcion_usuario} y el computador {opcion_computador}. Ganaste"
-        )
+        aleatorio = random.randint(1, 3)
 
-    elif (opciones.index(opcion_usuario) == 1 and opciones.index(opcion_computador) == 0):
-        print(
-            f"Tú haz elegido {opcion_usuario} y el computador {opcion_computador}. Ganaste"
-        )
+        if aleatorio == 1:
+            opcion_computador = "piedra"
+        elif aleatorio == 2:
+            opcion_computador = "papel"
+        elif aleatorio == 3:
+            opcion_computador = "tijera"
 
-    elif (opciones.index(opcion_usuario) == 2 and opciones.index(opcion_computador) == 1):
-        print(
-            f"Tú haz elegido {opcion_usuario} y el computador {opcion_computador}. Ganaste"
-        )
+        if opcion_usuario == opcion_computador:
+           print(f"Tú haz elegido {opcion_usuario} y el computador {opcion_computador}. Empate")
+
+        elif ((opcion_usuario == "piedra" and opcion_computador == "tijera") or
+                (opcion_usuario == "papel" and opcion_computador == "piedra") or
+                (opcion_usuario == "tijera" and opcion_computador == "papel")):
+            print(f"Tú haz elegido {opcion_usuario} y el computador {opcion_computador}. Ganaste")
+
+        else:
+            print(f"Tú haz elegido {opcion_usuario} y el computador {opcion_computador}. Perdiste")
 
     else:
-        print(f"Tú haz elegido {opcion_usuario} y el computador {opcion_computador}. Perdiste")
+        print("Debes jugar una opción válida.")
+        print("Opciones válidas: Piedra, Papel, Tijera.")
+        print("Ejemplo: $ python cachipun.py", "tijera")
+        exit()
+
+else:
+    print("Debes pasarme el argumento por línea de comando")
