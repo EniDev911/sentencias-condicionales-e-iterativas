@@ -52,6 +52,8 @@ graph TD
   grado3-->fin
 ```
 
+Y nuestro script quedaría de la siguiente manera:
+
 ```python
 """
    - Bajo Peso: < 18.5
@@ -89,10 +91,10 @@ else:
     print(msg + "\nEj: peso: 81, altura: 178")
 ```
 
-    Introduce el peso en Kilogramos: 0
-    Introduce la altura en Centimetros: 4
-    Los argumentos peso y altura deben ser mayor a 0
-    Ej: peso: 81, altura: 178
+    Introduce el peso en Kilogramos: 80
+    Introduce la altura en Centimetros: 178
+    Su IMC es 25.25
+    La clasificación OMS es Sobrepeso
     
 
 ## Actividad 2 - Cachipún
@@ -108,6 +110,29 @@ Se utiliza con mucha frecuencia para decidir quién de dos personas hará algo, 
 
 Se pide crear el programa Python, donde el usuario entregará como argumento: `piedra`, `papel` o `tijera`. Para que el computador pueda jugar escogerá un valor al azar.
 
+Teniendo claro cuales son los casos en que podemos ganar el juego, podemos ahora proceder a desarrollar el código. Al igual que en el ejercicio anterior antes de llegar a escribir el código pasemos a ver el diagrama de flujo:
+
+```mermaid
+---
+title: "DIAGRAMA DE FLUJO: CACHIPÚN"
+---
+graph TD
+  inicio([inicio])
+  inicio-->leer_usuario[/"Leer opción del usuario\nopcion_usuario = input"/]
+  leer_usuario-->aleatorio[Gestionar un número aleatorio\nentre 1 y 3]
+  aleatorio-->opcion_rival[/"Leer opción del rival\nopcion_rival = aleatorio(1, 3)"/]
+  opcion_rival-->asignar[El número aleatorio\nserá asignado a un valor\nde acuerdo al siguiente criterio:\n1=Piedra, 2=Papel y 3=Tijera]
+  asignar-->condicion1{"opcion_usuario = opcion_rival"}
+  condicion1-->|Si| empate[/Escribimos:\nJuego empatado/]
+  condicion1-->|No| condicion2{"opcion_usuario = piedra AND opcion_rival = tijera\nOR\nopcion_usuario = papel AND opcion_rival = piedra\nOR\nopcion_usuario = tijera AND opcion_rival = papel"}
+  condicion2-->|Si| ganaste[/Escribimos:\nJuego Ganado/]
+  condicion2-->|No| perdiste[/Escribimos:\nJuego Perdido/]
+  empate---->fin([Fin])
+  ganaste-->fin
+  perdiste-->fin
+```
+
+Y nuestro script quedaría de la siguiente manera:
 
 ```python
 import random
