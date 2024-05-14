@@ -4,9 +4,7 @@
 
 El IMC, conocido como el índice de masa corporal, es una medida que asocia el peso de una persona. Este valor es utilizado como un indicador nutricional y constituye un índice fácil y sencillo de calcular para determinar el estado de obesidad y sobrepeso de una persona. El IMC se calcula de la siguiente manera:
 
-<font size=7 color='#ffff5d'>
 $IMC=\frac{W}{H^2}$
-</font>
 
 Donde:
 
